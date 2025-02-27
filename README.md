@@ -1,7 +1,7 @@
-# M$^4$FT: Mamba, Migratory, Mobile and Multiple Fish Tracking
+# M4FT: Mamba, Migratory, Mobile and Multiple Fish Tracking
 
 The official implementation of the paper：
->  [**M$^4$FT: Mamba, Migratory, Mobile and Multiple Fish Tracking**](##TODO:LINK##)  
+>  [**M4FT: Mamba, Migratory, Mobile and Multiple Fish Tracking**](##TODO:LINK##)  
 >  Weiran Li, Yeqiang Liu, Wenxu Wang, Fukuan Wang, Zhenbo Li*
 >  [**\[Paper\]**](##TODO:LINK##) [**\[Code\]**](https://github.com/vranlee/M-4-FT)
 
