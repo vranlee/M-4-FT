@@ -6,7 +6,7 @@ import torch
 import torch.nn as nn
 
 from .m4ft import YOLOPAFPN
-from .yolo_head import YOLOXHead
+from .m4ft import YOLOXHead
 
 
 class YOLOX(nn.Module):
