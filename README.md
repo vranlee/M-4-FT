@@ -1,4 +1,4 @@
-# M4FT: Mamba, Migratory, Mobile and Multiple Fish Tracking
+# M $^4$ FT: Mamba, Migratory, Mobile and Multiple Fish Tracking
 
 The official implementation of the paper：
 >  [**M4FT: Mamba, Migratory, Mobile and Multiple Fish Tracking**](##TODO:LINK##)  
