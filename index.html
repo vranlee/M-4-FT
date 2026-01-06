@@ -1,0 +1,602 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M⁴FT: Mamba, Migratory, Mobile and Multiple Fish Tracking</title>
+    
+    <!-- Icons -->
+    <script src="https://unpkg.com/lucide@latest"></script>
+    
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    
+    <!-- Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet">
+    
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: #f8f9fa;
+            color: #1a202c;
+            scroll-behavior: smooth;
+        }
+        code {
+            font-family: 'JetBrains Mono', monospace;
+        }
+        .academic-card {
+            background: white;
+            border: 1px solid #e2e8f0;
+            box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px 0 rgba(0, 0, 0, 0.06);
+            transition: all 0.2s;
+        }
+        .academic-card:hover {
+            box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.06);
+            border-color: #cbd5e0;
+        }
+        .nav-link:hover {
+            color: #2563eb;
+        }
+        .custom-scrollbar::-webkit-scrollbar {
+            height: 8px;
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #cbd5e1;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #94a3b8;
+        }
+        /* Code block styling */
+        pre {
+            background-color: #1e293b;
+            color: #e2e8f0;
+            padding: 1rem;
+            border-radius: 0.5rem;
+            overflow-x: auto;
+            font-size: 0.875rem;
+            line-height: 1.5;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Navbar -->
+    <nav class="sticky top-0 z-50 bg-white/90 backdrop-blur-md border-b border-slate-200">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between h-16 items-center">
+                <div class="flex-shrink-0 flex items-center">
+                    <span class="font-bold text-xl tracking-tight text-slate-800">M<sup>4</sup>FT</span>
+                    <span class="ml-2 text-xs px-2 py-0.5 rounded bg-purple-50 text-purple-600 font-medium border border-purple-100">Under Review</span>
+                </div>
+                
+                <!-- Desktop Menu -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#overview" class="nav-link text-sm font-medium text-slate-600 transition-colors py-2">Overview</a>
+                    <a href="#updates" class="nav-link text-sm font-medium text-slate-600 transition-colors py-2">Updates</a>
+                    <a href="#performance" class="nav-link text-sm font-medium text-slate-600 transition-colors py-2">Performance</a>
+                    <a href="#analysis" class="nav-link text-sm font-medium text-slate-600 transition-colors py-2">Analysis</a>
+                    <a href="#installation" class="nav-link text-sm font-medium text-slate-600 transition-colors py-2">Installation</a>
+                    <a href="#downloads" class="nav-link text-sm font-medium text-slate-600 transition-colors py-2">Downloads</a>
+                </div>
+
+                <!-- Mobile Menu Button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-slate-500 hover:text-slate-700 focus:outline-none">
+                        <i data-lucide="menu" class="w-6 h-6"></i>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu (Hidden by default) -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white border-t border-slate-100">
+            <div class="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+                <a href="#overview" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-50">Overview</a>
+                <a href="#updates" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-50">Updates</a>
+                <a href="#performance" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-50">Performance</a>
+                <a href="#analysis" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-50">Analysis</a>
+                <a href="#installation" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-50">Installation</a>
+                <a href="#downloads" class="block px-3 py-2 rounded-md text-base font-medium text-slate-700 hover:text-blue-600 hover:bg-slate-50">Downloads</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <div id="overview" class="bg-white border-b border-slate-200 pt-16 pb-12">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+            
+            <!-- Title Area with Logo -->
+            <div class="flex flex-col md:flex-row justify-center items-center gap-6 mb-8">
+                <!-- Project Logo -->
+                <div class="flex-shrink-0">
+                    <!-- 
+                        height classes: 
+                        h-20 (5rem/80px) on mobile
+                        h-28 (7rem/112px) on desktop 
+                        Matches approx 2 lines of heading text 
+                    -->
+                    <img src="assets/logo.png" alt="M4FT Logo" 
+                         class="h-20 md:h-28 w-auto object-contain"
+                         onerror="this.src='https://placehold.co/100x100/purple/white?text=LOGO'">
+                </div>
+
+                <!-- Title Text -->
+                <h1 class="text-3xl md:text-5xl font-bold text-slate-900 tracking-tight leading-tight text-center md:text-left">
+                    <span class="text-purple-600">M</span>amba, <span class="text-purple-600">M</span>igratory, <span class="text-purple-600">M</span>obile<br />
+                    and <span class="text-purple-600">M</span>ultiple Fish Tracking
+                </h1>
+            </div>
+            
+            <div class="text-slate-600 mb-6 text-lg">
+                <span class="font-medium text-slate-900">Weiran Li, Yeqiang Liu, Wenxu Wang, 
+                <span class="font-medium text-slate-900">Zhenbo Li*</span>
+            </span></div>
+
+            <!-- School Logos -->
+            <div class="flex justify-center items-center gap-8 mb-8 transition-all duration-500">
+                <img src="assets/cau_logo.png" alt="China Agricultural University" class="h-16 w-auto object-contain" onerror="this.src='https://placehold.co/200x80?text=CAU+Logo'">
+            </div>
+
+            <!-- Action Buttons -->
+            <div class="flex justify-center gap-3 flex-wrap">
+                <!-- Paper Link (Placeholder based on TODO) -->
+                <a href="#" class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-red-50 text-red-700 border border-red-100 hover:bg-red-100 transition-colors">
+                    <i data-lucide="file-text" class="w-4 h-4 mr-2"></i> Paper (Coming Soon)
+                </a>
+                <a href="https://github.com/vranlee/M-4-FT" target="_blank" class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-slate-900 text-white border border-slate-900 hover:bg-slate-700 transition-colors">
+                    <i data-lucide="github" class="w-4 h-4 mr-2"></i> Code
+                </a>
+                <a href="#downloads" class="inline-flex items-center px-4 py-2 rounded-full text-sm font-medium bg-blue-50 text-blue-700 border border-blue-100 hover:bg-blue-100 transition-colors">
+                    <i data-lucide="database" class="w-4 h-4 mr-2"></i> Dataset & Models
+                </a>
+            </div>
+        </div>
+    </div>
+
+    <main class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 space-y-16">
+
+        <!-- Abstract -->
+        <section class="max-w-4xl mx-auto">
+            <div class="flex items-center mb-4">
+                <i data-lucide="book-open" class="w-6 h-6 text-blue-600 mr-2"></i>
+                <h2 class="text-2xl font-bold text-slate-900">Abstract</h2>
+            </div>
+            <p class="text-slate-600 leading-relaxed text-lg text-justify">
+                Tracking is a core technique for analyzing complex fish behaviors, such as schooling and predator avoidance. However, this task presents unique and severe challenges compared to generic object tracking of rigid targets like pedestrians or vehicles. Fish exhibit extreme non-rigid deformation and erratic motion, while underwater environments are characterized by poor illumination and low visibility. These issues, compounded by the need for lightweight, real-time deployment in high-density scenarios, often lead to catastrophic target loss and identity switching in conventional trackers. To tackle these specific challenges, we propose <strong>M<sup>4</sup>FT</strong>, a lightweight and robust online multiple fish tracking framework. To overcome the limitation of CNNs in capturing large deformations due to local receptive fields, and the high latency of Transformers, we design M<sup>4</sup>Net as the detection backbone. By pioneering the Vision Mamba architecture in this domain, M<sup>4</sup>Net leverages selective state-space modeling to achieve global contextual modeling comparable to Transformers but with linear complexity. It efficiently captures the flexible morphology of fish, all while maintaining a lightweight footprint. Furthermore, to counteract adverse underwater conditions, we integrate an optional UIE module that adaptively enhances imagery, synergistically improving detection robustness without relying on computationally expensive appearance-based re-identification. Experimental validation on the challenging BrackishMOT benchmark shows that M<sup>4</sup>FT sets a new state-of-the-art, achieving the highest HOTA of 29.2 while incurring only ~10% of the computational cost of mainstream models.
+
+            </p>
+        </section>
+
+        <!-- Updates Section -->
+        <section id="updates" class="max-w-4xl mx-auto">
+             <div class="flex items-center mb-4">
+                <i data-lucide="bell" class="w-6 h-6 text-blue-600 mr-2"></i>
+                <h2 class="text-2xl font-bold text-slate-900">Updates</h2>
+            </div>
+            <div class="bg-yellow-50 border border-yellow-200 rounded-xl p-6">
+                <ul class="space-y-3">
+                    <li class="flex items-start text-slate-700">
+                        <span class="inline-block bg-yellow-200 text-yellow-800 text-xs px-2 py-0.5 rounded mr-3 mt-0.5 font-mono">07.Jan.26</span>
+                        <span>Revised version is complete, and the project homepage is now online.</span>
+                    </li>
+                    <li class="flex items-start text-slate-700">
+                        <span class="inline-block bg-yellow-200 text-yellow-800 text-xs px-2 py-0.5 rounded mr-3 mt-0.5 font-mono">27.Feb.25</span>
+                        <span>We have released the public repo with related resources.</span>
+                    </li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- Pipeline Image -->
+        <section>
+            <div class="bg-slate-50 rounded-xl border border-slate-200 p-2 md:p-8 text-center">
+                <div class="max-w-6xl mx-auto">
+                    <!-- Image Placeholder -->
+                    <figure>
+                         <img src="assets/Pipeline.png" alt="M4FT Pipeline" class="w-full h-auto rounded shadow-sm border border-slate-200" 
+                         onerror="this.src='https://placehold.co/1200x400/e2e8f0/475569?text=Framework+Pipeline+(assets/Pipeline.png)'; this.onerror=null;">
+                        <figcaption class="mt-4 text-sm text-slate-500 italic">
+                            The architecture of M<sup>4</sup>FT, featuring M<sup>4</sup>Net and the optional UIE module.
+                        </figcaption>
+                    </figure>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contributions / Features -->
+        <section id="features">
+             <div class="flex items-center mb-6">
+                <i data-lucide="star" class="w-6 h-6 text-blue-600 mr-2"></i>
+                <h2 class="text-2xl font-bold text-slate-900">Key Contributions</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="academic-card p-8 rounded-xl h-full">
+                    <div class="flex items-center mb-4">
+                        <div class="p-2 bg-blue-50 rounded-lg text-blue-600 mr-3">
+                            <i data-lucide="zap" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900">Lightweight & Efficient</h3>
+                    </div>
+                    <p class="text-slate-600 mb-4">
+                        M<sup>4</sup>FT is a lightweight online baseline designed for low-light underwater scenes. It eliminates dependency on complex appearance features, enabling efficient online tracking.
+                    </p>
+                    <div class="mt-auto pt-4 border-t border-slate-100 text-sm font-medium text-slate-500">
+                        ~10% computation cost of mainstream models
+                    </div>
+                </div>
+
+                <div class="academic-card p-8 rounded-xl h-full">
+                    <div class="flex items-center mb-4">
+                        <div class="p-2 bg-indigo-50 rounded-lg text-indigo-600 mr-3">
+                            <i data-lucide="network" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900">M<sup>4</sup>Net Architecture</h3>
+                    </div>
+                     <p class="text-slate-600 mb-4">
+                        A specialized lightweight detection network specifically designed for fish. It embeds a selective scan module to support global detection while maintaining a compact architecture.
+                    </p>
+                </div>
+
+                <div class="academic-card p-8 rounded-xl h-full">
+                    <div class="flex items-center mb-4">
+                        <div class="p-2 bg-emerald-50 rounded-lg text-emerald-600 mr-3">
+                            <i data-lucide="eye" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900">Optional UIE Module</h3>
+                    </div>
+                    <p class="text-slate-600">
+                         An optional module designed to boost tracking performance across various low-visibility underwater conditions and reduce overall training costs by bypassing appearance-based Re-ID.
+                    </p>
+                </div>
+
+                <div class="academic-card p-8 rounded-xl h-full">
+                    <div class="flex items-center mb-4">
+                        <div class="p-2 bg-rose-50 rounded-lg text-rose-600 mr-3">
+                            <i data-lucide="trophy" class="w-6 h-6"></i>
+                        </div>
+                        <h3 class="text-xl font-bold text-slate-900">SOTA Performance</h3>
+                    </div>
+                    <p class="text-slate-600">
+                        Experimental validation on the BrackishMOT benchmark shows that M<sup>4</sup>FT outperforms other advanced methods, achieving the highest HOTA of 29.2.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- Performance Table -->
+        <section id="performance">
+            <div class="flex items-center mb-6">
+                <i data-lucide="bar-chart-2" class="w-6 h-6 text-blue-600 mr-2"></i>
+                <h2 class="text-2xl font-bold text-slate-900">Comparisons on BrackishMOT-M4FT</h2>
+            </div>
+            <div class="bg-white rounded-lg shadow-sm overflow-hidden border border-slate-200">
+                <div class="overflow-x-auto custom-scrollbar">
+                    <table class="min-w-full divide-y divide-slate-200">
+                        <thead class="bg-slate-50">
+                            <tr>
+                                <th class="px-4 py-3 text-left text-xs font-medium text-slate-500 uppercase tracking-wider sticky left-0 bg-slate-50 z-10 border-r border-slate-200">Method</th>
+                                <th class="px-4 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider">Params ↓</th>
+                                <th class="px-4 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider">GFLOPs ↓</th>
+                                <th class="px-4 py-3 text-center text-xs font-medium text-blue-700 uppercase tracking-wider font-bold">HOTA ↑</th>
+                                <th class="px-4 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider">MOTA ↑</th>
+                                <th class="px-4 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider">IDF1 ↑</th>
+                                <th class="px-4 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider">DetA ↑</th>
+                                <th class="px-4 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider">AssA ↑</th>
+                                <th class="px-4 py-3 text-center text-xs font-medium text-slate-500 uppercase tracking-wider">IDs ↓</th>
+                            </tr>
+                        </thead>
+                        <tbody class="bg-white divide-y divide-slate-200 text-sm">
+                            <!-- SORT -->
+                            <tr class="hover:bg-slate-50">
+                                <td class="px-4 py-3 whitespace-nowrap font-medium text-slate-900 sticky left-0 bg-white border-r border-slate-100">SORT</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-slate-600">25.28</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-slate-600">207.35</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-slate-600">22.6</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-slate-600">25.4</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-slate-600">30.9</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-slate-600">20.1</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-slate-600">25.6</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-slate-600">164</td>
+                            </tr>
+
+                             <!-- ByteTrack -->
+                             <tr class="hover:bg-slate-50">
+                                <td class="px-4 py-3 whitespace-nowrap font-medium text-slate-900 sticky left-0 bg-white border-r border-slate-100">ByteTrack</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-slate-600">25.28</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-slate-600">207.35</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-slate-600">28.4</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-slate-600">37.8</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-slate-600">42.7</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-slate-600">27.0</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center font-bold text-slate-600">30.0</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-slate-600">129</td>
+                            </tr>
+
+                            <!-- OC-SORT -->
+                            <tr class="hover:bg-slate-50">
+                                <td class="px-4 py-3 whitespace-nowrap font-medium text-slate-900 sticky left-0 bg-white border-r border-slate-100">OC-SORT</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-slate-600">25.28</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-slate-600">207.35</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-slate-600">24.0</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-slate-600">26.1</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-slate-600">32.0</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-slate-600">20.7</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-slate-600">28.2</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-slate-600">138</td>
+                            </tr>
+
+                            <!-- HybridSORT -->
+                            <tr class="hover:bg-slate-50">
+                                <td class="px-4 py-3 whitespace-nowrap font-medium text-slate-900 sticky left-0 bg-white border-r border-slate-100">HybridSORT</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-slate-600">25.28</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-slate-600">207.35</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-slate-600">12.0</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-slate-600">7.4</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-slate-600">13.0</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-slate-600">6.0</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-slate-600">24.1</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center font-bold text-slate-900">86</td>
+                            </tr>
+
+                            <!-- M4FT (Ours) -->
+                            <tr class="bg-blue-50/60 hover:bg-blue-100/60 transition-colors">
+                                <td class="px-4 py-3 whitespace-nowrap font-bold text-blue-700 sticky left-0 bg-blue-50/90 border-r border-blue-200">M4FT (Ours)</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center font-bold text-blue-700">10.60</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center font-bold text-blue-700">79.62</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center font-bold text-blue-700">29.2</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center font-bold text-blue-700">42.8</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center font-bold text-blue-700">43.1</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center font-bold text-blue-700">35.6</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-blue-700">24.2</td>
+                                <td class="px-4 py-3 whitespace-nowrap text-center text-blue-700">204</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="px-4 py-2 bg-slate-50 border-t border-slate-200 text-xs text-slate-500">
+                    * The table above shows a subset of metrics. Params and GFLOPs are efficiency metrics (lower is better). HOTA is the primary tracking metric (higher is better). More results are given in the main manuscript.
+                </div>
+            </div>
+
+            <!-- Visual Results Image -->
+             <figure class="mt-8">
+                <img src="assets/Results.png" alt="Visual Results" class="w-full h-auto rounded shadow-sm border border-slate-200"
+                onerror="this.src='https://placehold.co/1200x600/e2e8f0/475569?text=Visual+Tracking+Results+(assets/Results.png)'; this.onerror=null;">
+                <figcaption class="mt-4 text-center text-sm text-slate-500 italic">
+                    Visual comparison of tracking results.
+                </figcaption>
+            </figure>
+        </section>
+
+        <!-- Sensitivity Analysis (Supplement) -->
+        <section id="analysis" class="max-w-5xl mx-auto">
+            <div class="flex items-center mb-6">
+                <i data-lucide="activity" class="w-6 h-6 text-blue-600 mr-2"></i>
+                <h2 class="text-2xl font-bold text-slate-900">Parameter Sensitivity Analysis</h2>
+            </div>
+            
+            <p class="text-slate-600 mb-8 leading-relaxed">
+                To evaluate the robustness of our tracking framework and provide justification for our choice of hyperparameters, we conducted a sensitivity analysis on the key thresholds that govern the tracking process. We analyze three parameters: the IoU matching threshold (&beta;), the high-confidence detection threshold (&gamma;), and a post-processing evaluation threshold (&alpha;).
+            </p>
+
+            <!-- 1. IoU Threshold -->
+            <div class="mb-12">
+                <h3 class="text-lg font-bold text-slate-800 mb-3 flex items-center">
+                    <span class="bg-blue-100 text-blue-700 text-xs font-mono py-1 px-2 rounded mr-2">Phase 1</span>
+                    IoU Matching Threshold (&beta;)
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-3">
+                    <div class="text-center">
+                        <img src="assets/figs/beta-HOTA.jpg" alt="HOTA vs Beta" class="w-full rounded border border-slate-100">
+                        <p class="text-xs text-slate-500 mt-1">(a) HOTA (&uarr;)</p>
+                    </div>
+                    <div class="text-center">
+                        <img src="assets/figs/beta-MOTA.jpg" alt="MOTA vs Beta" class="w-full rounded border border-slate-100">
+                        <p class="text-xs text-slate-500 mt-1">(b) MOTA (&uarr;)</p>
+                    </div>
+                    <div class="text-center">
+                        <img src="assets/figs/beta-IDF1.jpg" alt="IDF1 vs Beta" class="w-full rounded border border-slate-100">
+                        <p class="text-xs text-slate-500 mt-1">(c) IDF1 (&uarr;)</p>
+                    </div>
+                </div>
+                <p class="text-sm text-slate-600 bg-slate-50 p-4 rounded-lg border border-slate-100">
+                    We first analyze the impact of the IoU threshold (&beta;) used for associating detections with tracklets. A higher &beta; imposes a stricter spatial constraint for a match to be considered valid. The results show that performance is stable across a range of values, with a peak near <strong>&beta; = 0.9</strong>.
+                </p>
+            </div>
+
+            <!-- 2. High-confidence Threshold -->
+            <div class="mb-12">
+                <h3 class="text-lg font-bold text-slate-800 mb-3 flex items-center">
+                    <span class="bg-indigo-100 text-indigo-700 text-xs font-mono py-1 px-2 rounded mr-2">Phase 2</span>
+                    High-confidence Detection Threshold (&gamma;)
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-4 mb-3">
+                    <div class="text-center">
+                        <img src="assets/figs/gamma-HOTA.jpg" alt="HOTA vs Gamma" class="w-full rounded border border-slate-100">
+                        <p class="text-xs text-slate-500 mt-1">(a) HOTA (&uarr;)</p>
+                    </div>
+                    <div class="text-center">
+                        <img src="assets/figs/gamma-MOTA.jpg" alt="MOTA vs Gamma" class="w-full rounded border border-slate-100">
+                        <p class="text-xs text-slate-500 mt-1">(b) MOTA (&uarr;)</p>
+                    </div>
+                    <div class="text-center">
+                        <img src="assets/figs/gamma-IDF1.jpg" alt="IDF1 vs Gamma" class="w-full rounded border border-slate-100">
+                        <p class="text-xs text-slate-500 mt-1">(c) IDF1 (&uarr;)</p>
+                    </div>
+                </div>
+                <p class="text-sm text-slate-600 bg-slate-50 p-4 rounded-lg border border-slate-100">
+                    Next, we investigate the high-confidence detection threshold (&gamma;), which corresponds to &tau;<sub>high</sub> in our association logic. This threshold determines which detections are considered reliable for the first matching stage. Results show that performance is optimal around <strong>&gamma; = 0.6</strong>. Setting the threshold too high (e.g., >0.8) causes a sharp decline, as too many valid, lower-confidence detections (e.g., from occluded fish) are prematurely discarded.
+                </p>
+            </div>
+
+            <!-- 3. Evaluation Threshold -->
+            <div class="mb-8">
+                <h3 class="text-lg font-bold text-slate-800 mb-3 flex items-center">
+                     <span class="bg-emerald-100 text-emerald-700 text-xs font-mono py-1 px-2 rounded mr-2">Post-Process</span>
+                    Evaluation Threshold (&alpha;)
+                </h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-3 max-w-3xl mx-auto">
+                    <div class="text-center">
+                        <img src="assets/figs/alpha-MOTA.jpg" alt="MOTA/IDF1 vs Alpha" class="w-full rounded border border-slate-100">
+                        <p class="text-xs text-slate-500 mt-1">(a) MOTA (&uarr;) and IDF1 (&uarr;)</p>
+                    </div>
+                    <div class="text-center">
+                        <img src="assets/figs/alpha-IDSW.jpg" alt="ID Switch vs Alpha" class="w-full rounded border border-slate-100">
+                        <p class="text-xs text-slate-500 mt-1">(b) IDs (&darr;) and Frag (&darr;)</p>
+                    </div>
+                </div>
+                <p class="text-sm text-slate-600 bg-slate-50 p-4 rounded-lg border border-slate-100">
+                    Finally, we examine the effect of an evaluation-only confidence threshold (&alpha;), which is a post-processing filter. While HOTA is unaffected by this parameter, other metrics are sensitive to it. We observe stable performance around <strong>&alpha; = 0.5</strong>.
+                </p>
+            </div>
+
+            <div class="bg-blue-50 border-l-4 border-blue-500 p-4 text-sm text-slate-700">
+                <strong>Conclusion:</strong> This analysis demonstrates that our method is not overly sensitive to the precise choice of hyperparameters. For all our main experiments, we use a fixed set of default values (&beta;=0.9, &gamma;=0.6, &alpha;=0.5) without per-sequence tuning.
+            </div>
+
+        </section>
+
+        <!-- Installation & Experiments -->
+        <section id="installation">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                <div>
+                     <div class="flex items-center mb-4">
+                        <i data-lucide="terminal" class="w-6 h-6 text-slate-700 mr-2"></i>
+                        <h3 class="text-xl font-bold text-slate-900">Installation</h3>
+                    </div>
+                    <pre><code class="language-bash"># Step 1: Clone repo
+cd {Repo_ROOT}
+
+# Step 2: Install dependencies
+# Python 3.10 & PyTorch 2.0.0 recommended
+conda env create -f requirements.yaml
+conda activate M4FT
+
+# Step 3 (Optional): Data Generation
+# Clone CycleGAN repo and follow implementation
+# BrackishMOT-M4FT includes generated data</code></pre>
+                </div>
+
+                <div>
+                    <div class="flex items-center mb-4">
+                        <i data-lucide="play-circle" class="w-6 h-6 text-slate-700 mr-2"></i>
+                        <h3 class="text-xl font-bold text-slate-900">Experiments</h3>
+                    </div>
+                    <pre><code class="language-bash"># Train
+python3 tools/train.py -f exps/example/mot/M4FT_exps.py --fp16 -o
+
+# Test
+# Recommended: --track_thresh 0.4
+python3 tools/track.py \
+  -f exps/example/mot/M4FT_exps.py \
+  -c ../pretrained/M4Net.pth.tar \
+  --fuse</code></pre>
+                </div>
+            </div>
+        </section>
+
+        <!-- Downloads -->
+        <section id="downloads">
+            <div class="flex items-center mb-6">
+                <i data-lucide="download" class="w-6 h-6 text-blue-600 mr-2"></i>
+                <h2 class="text-2xl font-bold text-slate-900">Downloads</h2>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <!-- Dataset -->
+                <div class="academic-card p-6 rounded-xl border-l-4 border-l-blue-500">
+                    <h3 class="text-lg font-semibold text-slate-900 mb-2">BrackishMOT-M4FT Dataset</h3>
+                    <p class="text-sm text-slate-600 mb-4">
+                        The dataset has been released on GitHub.
+                    </p>
+                    <a href="https://github.com/vranlee/MFT_DATASETS/" target="_blank" class="flex items-center justify-between w-full px-4 py-3 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 transition-colors group">
+                        <span class="font-mono text-sm text-slate-700">GitHub | MFT_DATASETS</span>
+                        <i data-lucide="arrow-right" class="w-4 h-4 text-slate-400 group-hover:text-blue-500 transition-colors"></i>
+                    </a>
+                </div>
+
+                <!-- Models -->
+                <div class="academic-card p-6 rounded-xl border-l-4 border-l-indigo-500">
+                    <h3 class="text-lg font-semibold text-slate-900 mb-2">Pretrained Models</h3>
+                    <p class="text-sm text-slate-600 mb-4">
+                        Available on Google Drive and Baidu Yun.
+                    </p>
+                    <div class="space-y-2">
+                        <a href="https://drive.google.com/drive/folders/128eEInnilKA4nB3OnXCr5Pijfy-d0xUx?usp=sharing" target="_blank" class="flex items-center justify-between w-full px-4 py-3 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 transition-colors group">
+                            <span class="font-mono text-sm text-slate-700">Google Drive</span>
+                            <i data-lucide="external-link" class="w-4 h-4 text-slate-400 group-hover:text-indigo-500 transition-colors"></i>
+                        </a>
+                        <a href="https://pan.baidu.com/s/1y7hqfYkRFfkQZdk3mbkcxA?pwd=v5ht" target="_blank" class="flex items-center justify-between w-full px-4 py-3 bg-slate-50 hover:bg-slate-100 rounded-lg border border-slate-200 transition-colors group">
+                            <span class="font-mono text-sm text-slate-700">BaiduYun (Pwd: v5ht)</span>
+                            <i data-lucide="external-link" class="w-4 h-4 text-slate-400 group-hover:text-indigo-500 transition-colors"></i>
+                        </a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Contact -->
+        <section class="border-t border-slate-200 pt-12 text-center">
+            <h2 class="text-xl font-bold text-slate-900 mb-6">Contact</h2>
+            <div class="flex flex-col md:flex-row justify-center items-center gap-6">
+                <a href="mailto:vranlee@cau.edu.cn" class="flex items-center px-6 py-3 rounded-full bg-white border border-slate-200 shadow-sm hover:border-blue-300 hover:shadow-md transition-all">
+                    <div class="bg-blue-50 p-2 rounded-full mr-3 text-blue-600">
+                        <i data-lucide="mail" class="w-4 h-4"></i>
+                    </div>
+                    <span class="text-slate-600 font-medium">vranlee@cau.edu.cn</span>
+                </a>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-white border-t border-slate-200 py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col items-center">
+            <div class="font-bold text-xl text-slate-800 mb-2">M<sup>4</sup>FT</div>
+            <p class="text-slate-400 text-sm">© 2025 M4FT Team. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Initialize Lucide Icons
+        lucide.createIcons();
+
+        // Mobile Menu Toggle Logic
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            // Toggle hidden class
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        // Close mobile menu when a link is clicked
+        document.querySelectorAll('#mobile-menu a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Smooth Scroll handling for navigation
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
