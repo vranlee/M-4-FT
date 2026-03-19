@@ -1,9 +1,9 @@
 # M $^4$ FT: Mamba, Migratory, Mobile and Multiple Fish Tracking
 
 The official implementation of the paper：
->  [**M4FT: Mamba, Migratory, Mobile and Multiple Fish Tracking**](##TODO:LINK##)  
+>  [**M4FT: Mamba, Migratory, Mobile and Multiple Fish Tracking**](https://doi.org/10.1109/TCSVT.2026.3661245)  
 >  Weiran Li, Yeqiang Liu, Wenxu Wang, Zhenbo Li*
->  [**\[Paper\]**](##TODO:LINK##) [**\[Code\]**](https://github.com/vranlee/M-4-FT)
+>  [**\[Paper\]**](https://doi.org/10.1109/TCSVT.2026.3661245) [**\[Code\]**](https://github.com/vranlee/M-4-FT)
 
 <div align="center">
 <img src="assets/Pipeline.png" width="900"/>
@@ -19,8 +19,8 @@ Contact: vranlee@cau.edu.cn. Any questions or discussion are welcome!
 -----
 
 ## Updates
++ [031926] Update the repo links, the paper accepted by TCSVT.
 + [270225] We have released the public repo with related resources. The further reorganization and optimization will be done after the paper accepted.
-+ [270225] Sadly be rejected by CVPR25. Keep it up, and almost there! haha
 -----
 
 
@@ -103,4 +103,13 @@ The pretrained models have been released on [**\[GoogleDrive\]**](https://drive.
 A large part of the code is borrowed from [ByteTrack](https://github.com/ifzhang/ByteTrack), [OC_SORT](https://github.com/noahcao/OC_SORT), and [VMamba](https://github.com/MzeroMiko/VMamba). Thanks for their wonderful works!
 
 ## Citation
-The citation format will be given after the manuscript is accepted. Using this repo citation if needed now.
+@ARTICLE{11373236,
+  author={Li, Weiran and Liu, Yeqiang and Wang, Wenxu and Li, Zhenbo},
+  journal={IEEE Transactions on Circuits and Systems for Video Technology}, 
+  title={M4FT: Mamba, Migratory, Mobile and Multiple Fish Tracking}, 
+  year={2026},
+  volume={},
+  number={},
+  pages={1-1},
+  keywords={Fish;Computational modeling;Target tracking;Transformers;Feature extraction;Detectors;Computer architecture;Adaptation models;Standards;Visualization;Fish Tracking;Vision Mamba;Multiple Object Tracking;Underwater Vision;Computer Vision},
+  doi={10.1109/TCSVT.2026.3661245}}
